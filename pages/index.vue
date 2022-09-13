@@ -1,7 +1,7 @@
 <template>
   <main>
     <Header :cartData="cart"/>
-    <Product :cartData="cart"/>
+    <Product :cartData.sync="cart"/>
     <Footer />
   </main>
 </template>

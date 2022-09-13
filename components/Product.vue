@@ -181,17 +181,28 @@ export default {
   },
   methods: {
     addToCart(product) {
+      var vueThis = this;
       if (this.cartData.length == 7) {
         alert("Daha Fazla Ürün Ekleyemezsiniz");
       } else {
+        var newProduct = product;
+        var isNotSame = true;
         this.cartData.forEach((element) => {
           if (product.id == element.id) {
-            console.log("Aynısını buldum" + element.id);
+            newProduct.count = newProduct.count + 1;
+            vueThis.$emit(
+              "update:cartData",
+              this.cartData.map((u) =>
+                u.id !== newProduct.id ? u : newProduct
+              )
+            );
+            isNotSame = false;
           }
         });
-        var newProduct = product;
-        newProduct["count"] = 1;
-        this.cartData.push(newProduct);
+        if (isNotSame) {
+          newProduct["count"] = 1;
+          this.cartData.push(newProduct);
+        }
         localStorage.setItem("cart", JSON.stringify(this.cartData));
       }
     },
