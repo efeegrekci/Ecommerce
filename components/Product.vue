@@ -53,6 +53,8 @@
 
     <div
       class="
+        opacity-1
+        visible
         absolute
         bg-white
         right-0
@@ -64,9 +66,10 @@
         pt-12
         rounded-bl-lg
       "
+      :class="{active: isActive}"
     >
       <div class="absolute right-5 top-5">
-        <img src="img/xmark-solid.svg" alt="xmark" class="w-3 cursor-pointer" />
+        <img src="img/xmark-solid.svg" alt="xmark" class="w-3 cursor-pointer" @click="cartClose"/>
       </div>
       <ul class="group last:mb-0">
         <li
@@ -177,6 +180,7 @@ export default {
           price: 350,
         },
       ],
+      isActive: false
     };
   },
   methods: {
@@ -213,6 +217,16 @@ export default {
         localStorage.removeItem("cart");
       }
     },
+    cartClose(){
+      this.isActive = !this.isActive;
+    }
   },
 };
 </script>
+
+<style scoped>
+.active{
+  opacity: 0;
+  visibility: hidden;
+}
+</style>
