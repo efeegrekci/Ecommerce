@@ -11,7 +11,7 @@
       "
     >
       <li
-        v-for="(item, index) in products"
+        v-for="(item, index) in productData"
         :key="index"
         class="w-full flex items-center justify-center flex-col py-5 group"
       >
@@ -19,11 +19,11 @@
           <div class="text-center font-normal mb-3 px-5 text-sm text-gray-700">
             {{ item.name }}
           </div>
-          <div class="flex justify-center mb-3 overflow-hidden">
+          <div class="flex justify-center mb-5 overflow-hidden w-56 h-56">
             <img
-              :src="item.imageLink"
+              :src="item.image"
               alt="Product"
-              class="hover:scale-110 transition-all"
+              class="hover:scale-110 transition-all object-contain"
             />
           </div>
           <div class="text-center font-bold text-xl text-gray-700">
@@ -66,10 +66,15 @@
         pt-12
         rounded-bl-lg
       "
-      :class="{active: isActive}"
+      :class="{ active: isActive }"
     >
       <div class="absolute right-5 top-5">
-        <img src="img/xmark-solid.svg" alt="xmark" class="w-3 cursor-pointer" @click="cartClose"/>
+        <img
+          src="img/xmark-solid.svg"
+          alt="xmark"
+          class="w-3 cursor-pointer"
+          @click="cartClose"
+        />
       </div>
       <ul class="group last:mb-0">
         <li
@@ -77,11 +82,11 @@
           :key="index"
           class="flex mb-5 last:mb-0 relative w-full"
         >
-          <div class="mr-5">
+          <div class="mr-5 overflow-hidden">
             <img
-              :src="item.imageLink"
+              :src="item.image"
               alt="phone"
-              class="w-12 bordercursor-pointer"
+              class="object-cover w-12 h-12 border cursor-pointer"
             />
           </div>
           <div class="mr-5">
@@ -130,70 +135,28 @@ export default {
   },
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          imageLink: "/img/phone.jpg",
-          name: "Apple Iphone 13 256 GB",
-          price: 300,
-        },
-        {
-          id: 2,
-          imageLink: "/img/phone.jpg",
-          name: "Apple Iphone 13 128 GB",
-          price: 250,
-        },
-        {
-          id: 3,
-          imageLink: "/img/phone.jpg",
-          name: "Apple Iphone 13 128 GB",
-          price: 225,
-        },
-        {
-          id: 4,
-          imageLink: "/img/phone.jpg",
-          name: "Apple Iphone 13 Pro 256 GB",
-          price: 350,
-        },
-        {
-          id: 5,
-          imageLink: "/img/phone.jpg",
-          name: "Apple Iphone 13 256 GB",
-          price: 300,
-        },
-        {
-          id: 6,
-          imageLink: "/img/phone.jpg",
-          name: "Apple Iphone 13 128 GB",
-          price: 250,
-        },
-        {
-          id: 7,
-          imageLink: "/img/phone.jpg",
-          name: "Apple Iphone 13 128 GB",
-          price: 225,
-        },
-        {
-          id: 8,
-          imageLink: "/img/phone.jpg",
-          name: "Apple Iphone 13 Pro 256 GB",
-          price: 350,
-        },
-      ],
-      isActive: false
+      productData: {},
+      isActive: false,
     };
+  },
+  async fetch() {
+    try {
+      const { data } = await this.$axios.get(`/63231094390f92a401803bfa`);
+      this.productData = data.products;
+      console.log(this.productData);
+    } catch (ex) {}
   },
   methods: {
     addToCart(product) {
       var vueThis = this;
-      if (this.cartData.length == 7) {
+      if (this.cartData.length == 5) {
         alert("Daha Fazla Ürün Ekleyemezsiniz");
       } else {
         var newProduct = product;
         var isNotSame = true;
         this.cartData.forEach((element) => {
           if (product.id == element.id) {
-            newProduct.count = newProduct.count + 1;
+            newProduct.count = element.count + 1;
             vueThis.$emit(
               "update:cartData",
               this.cartData.map((u) =>
@@ -217,16 +180,9 @@ export default {
         localStorage.removeItem("cart");
       }
     },
-    cartClose(){
+    cartClose() {
       this.isActive = !this.isActive;
-    }
+    },
   },
 };
 </script>
-
-<style scoped>
-.active{
-  opacity: 0;
-  visibility: hidden;
-}
-</style>

@@ -22,7 +22,7 @@ export default {
     return {
       productDetail:{
         id: 1,
-        imageLink: "/img/phone.jpg",
+        imageLink: "/img/products/phone.jpg",
         name: "Apple Iphone 13 256 GB",
         price: 300,
         category: "Technology",
