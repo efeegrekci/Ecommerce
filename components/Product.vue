@@ -15,7 +15,7 @@
         :key="index"
         class="w-full flex items-center justify-center flex-col py-5 group"
       >
-        <a href="javascript:;" class="mb-3">
+        <NuxtLink :to="`/detail/${item.url}`" class="mb-3">
           <div class="text-center font-normal mb-3 px-5 text-sm text-gray-700">
             {{ item.name }}
           </div>
@@ -29,8 +29,8 @@
           <div class="text-center font-bold text-xl text-gray-700">
             {{ item.price }}$
           </div>
-        </a>
-        <a
+        </NuxtLink>
+        <div
           href="javascript:;"
           :id="item.id"
           class="
@@ -44,17 +44,19 @@
             px-5
             rounded-lg
             transition-colors
+            cursor-pointer
           "
           @click="addToCart(item)"
-          >Add to Cart</a
         >
+          Add to Cart
+        </div>
       </li>
     </ul>
 
     <div
       class="
-        opacity-1
-        visible
+        opacity-0
+        invisible
         absolute
         bg-white
         right-0
@@ -120,6 +122,7 @@
           </div>
         </li>
       </ul>
+      <div class="font-semibold text-md mt-5">Total : {{ cartTotalPrice }}$</div>
     </div>
   </section>
 </template>
@@ -127,15 +130,11 @@
 <script>
 export default {
   name: "Product",
-  props: {
-    cartData: {
-      type: Array,
-      default: [],
-    },
-  },
   data() {
     return {
       productData: {},
+      cartData: [],
+      cartTotalPrice: 0,
       isActive: false,
     };
   },
@@ -143,35 +142,32 @@ export default {
     try {
       const { data } = await this.$axios.get(`/63231094390f92a401803bfa`);
       this.productData = data.products;
-      console.log(this.productData);
     } catch (ex) {}
+  },
+  mounted() {
+    if (localStorage.getItem("cart") !== null) {
+      this.cartData = JSON.parse(localStorage.getItem("cart"));
+    }
   },
   methods: {
     addToCart(product) {
-      var vueThis = this;
-      if (this.cartData.length == 5) {
-        alert("Daha Fazla Ürün Ekleyemezsiniz");
-      } else {
-        var newProduct = product;
-        var isNotSame = true;
-        this.cartData.forEach((element) => {
-          if (product.id == element.id) {
-            newProduct.count = element.count + 1;
-            vueThis.$emit(
-              "update:cartData",
-              this.cartData.map((u) =>
-                u.id !== newProduct.id ? u : newProduct
-              )
-            );
-            isNotSame = false;
-          }
-        });
-        if (isNotSame) {
-          newProduct["count"] = 1;
-          this.cartData.push(newProduct);
+      this.isActive = true;
+
+      let isNotSame = true;
+      this.cartData.forEach((element, index) => {
+        if (product.id == element.id) {
+          product.count = element.count + 1;
+          this.$set(this.cartData, index, product);
+          isNotSame = false;
         }
-        localStorage.setItem("cart", JSON.stringify(this.cartData));
+      });
+
+      if (isNotSame) {
+        product["count"] = 1;
+        this.cartData.push(product);
       }
+
+      localStorage.setItem("cart", JSON.stringify(this.cartData));
     },
     deleteToCart(index) {
       this.cartData.splice(index, 1);
@@ -181,7 +177,20 @@ export default {
       }
     },
     cartClose() {
-      this.isActive = !this.isActive;
+      this.isActive = false;
+    },
+  },
+  watch: {
+    cartData: {
+      handler: function (val) {
+        this.cartTotalPrice = 0;
+        val.forEach((element) => {
+          this.cartTotalPrice =
+            this.cartTotalPrice +
+            parseInt(element.price) * parseInt(element.count);
+        });
+      },
+      deep: true,
     },
   },
 };

@@ -11,5 +11,6 @@ a.nuxt-link-exact-active:hover {
 }
 
 .active{
-  @apply opacity-0 invisible
+  opacity: 1;
+  visibility: visible;
 }

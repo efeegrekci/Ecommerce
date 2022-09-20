@@ -13,24 +13,9 @@
     "apiUrl": "home"
   },
   {
-    "name": "pages",
-    "path": "pages",
-    "component": "pages/index.vue",
-    "apiUrl": "pages",
-    "isOnlySubPage": true
-  },
-  {
-    "name": "products",
-    "path": "products",
-    "component": "product/index.vue",
-    "apiUrl": "products",
-    "isOnlySubPage": true
-  },
-  {
-    "name": "details",
-    "path": "details",
-    "component": "details/index.vue",
-    "apiUrl": "details",
-    "isOnlySubPage": true
+    "name": "detail",
+    "path": "detail",
+    "component": "pages/detail.vue",
+    "apiUrl": "pages"
   }
 ]
