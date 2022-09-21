@@ -1,5 +1,5 @@
 <template>
-    <Detail />
+  <id/>
 </template>
 
 <script>

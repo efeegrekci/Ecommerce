@@ -2,27 +2,27 @@
   <section class="py-12 w-full my-14 lg:max-w-screen-lg lg:m-auto">
     <div class="flex items-center w-full">
       <div class="w-1/2 overflow-hidden">
-        <img :src="productDetail.imageLink" alt="phone" />
+        <img :src="component.image" :alt="component.image" />
       </div>
       <div class="w-1/2 pl-10">
         <div class="mb-3">
           <span class="font-semibold">Category :</span>
-          {{ productDetail.category }}
+          {{ component.category }}
         </div>
         <div class="mb-3">
           <span class="font-semibold">Product Name :</span>
-          {{ productDetail.name }}
+          {{ component.name }}
         </div>
         <div class="mb-3">
-          <span class="font-semibold">Price :</span> {{ productDetail.price }}$
+          <span class="font-semibold">Price :</span> {{ component.price }}$
         </div>
         <div class="mb-3">
           <span class="font-semibold">Description :</span>
-          {{ productDetail.description }}
+          {{ component.description }}
         </div>
         <a
           href="javascript:;"
-          :id="productDetail.id"
+          :id="component.id"
           class="
             flex
             justify-center
@@ -46,19 +46,7 @@
 <script>
 
 export default {
-  name: "Detail",
-  data() {
-    return {
-      productDetail: {
-        id: 1,
-        imageLink: "/img/products/phone.jpg",
-        name: "Apple Iphone 13 256 GB",
-        price: 300,
-        category: "Technology",
-        description:
-          "Description : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eligendi ut quis, facere et quod iste omnis est ullam magni.",
-      },
-    };
-  }
+  name: "detail",
+  props:['component']
 };
 </script>

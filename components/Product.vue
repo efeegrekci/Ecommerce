@@ -56,16 +56,16 @@
 </template>
 
 <script>
-import { useCounterStore } from '@/stores/counter'
+import { useCounterStore } from "@/stores/counter";
 
 export default {
   name: "Product",
   setup() {
-    const store = useCounterStore()
+    const store = useCounterStore();
 
     return {
       store,
-    }
+    };
   },
   data() {
     return {
@@ -98,20 +98,32 @@ export default {
       }
 
       localStorage.setItem("cart", JSON.stringify(this.store.cartData));
-    }
+    },
   },
   watch: {
-    cartData: {
-      handler: function (val) {
-        this.cartTotalPrice = 0;
-        val.forEach((element) => {
-          this.cartTotalPrice =
-            this.cartTotalPrice +
-            parseInt(element.price) * parseInt(element.count);
-        });
-      },
-      deep: true,
-    },
+    // store: {
+    //   handler: function (val) {
+    //     this.store.cartTotalPrice = 0;
+    //     val.forEach((element) => {
+    //       this.store.cartTotalPrice =
+    //         this.store.cartTotalPrice +
+    //         parseInt(element.price) * parseInt(element.count);
+    //     });
+    //   },
+    //   deep: true,
+    // },
+    // store: {
+    //   immediate: true,
+    //   deep: true,
+    //   handler(val) {
+    //     this.store.cartTotalPrice = 0;
+    //     val.forEach((element) => {
+    //       this.store.cartTotalPrice =
+    //         this.store.cartTotalPrice +
+    //         parseInt(element.price) * parseInt(element.count);
+    //     });
+    //   },
+    // },
   },
 };
 </script>
