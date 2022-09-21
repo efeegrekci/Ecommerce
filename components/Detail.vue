@@ -44,6 +44,7 @@
 </template>
 
 <script>
+
 export default {
   name: "Detail",
   data() {
@@ -58,9 +59,6 @@ export default {
           "Description : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eligendi ut quis, facere et quod iste omnis est ullam magni.",
       },
     };
-  },
-  mounted() {
-
-  },
+  }
 };
 </script>

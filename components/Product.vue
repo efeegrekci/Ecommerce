@@ -52,90 +52,25 @@
         </div>
       </li>
     </ul>
-
-    <div
-      class="
-        opacity-0
-        invisible
-        absolute
-        bg-white
-        right-0
-        top-20
-        w-96
-        shadow-md
-        p-5
-        pr-12
-        pt-12
-        rounded-bl-lg
-      "
-      :class="{ active: isActive }"
-    >
-      <div class="absolute right-5 top-5">
-        <img
-          src="img/xmark-solid.svg"
-          alt="xmark"
-          class="w-3 cursor-pointer"
-          @click="cartClose"
-        />
-      </div>
-      <ul class="group last:mb-0">
-        <li
-          v-for="(item, index) in cartData"
-          :key="index"
-          class="flex mb-5 last:mb-0 relative w-full"
-        >
-          <div class="mr-5 overflow-hidden">
-            <img
-              :src="item.image"
-              alt="phone"
-              class="object-cover w-12 h-12 border cursor-pointer"
-            />
-          </div>
-          <div class="mr-5">
-            <div class="text-sm text-gray-700 mb-2">{{ item.name }}</div>
-            <div class="flex">
-              <div class="text-sm text-gray-700 text-right font-bold mr-5">
-                {{ item.price }}$
-              </div>
-              <div class="text-sm text-gray-700 text-right font-bold">
-                x{{ item.count }}
-              </div>
-            </div>
-          </div>
-          <div
-            class="
-              text-sm text-gray-700
-              font-bold
-              cursor-pointer
-              flex
-              align-center
-              absolute
-              right-0
-            "
-          >
-            <img
-              src="img/trash-solid.svg"
-              alt=""
-              class="w-3"
-              @click="deleteToCart(index)"
-            />
-          </div>
-        </li>
-      </ul>
-      <div class="font-semibold text-md mt-5">Total : {{ cartTotalPrice }}$</div>
-    </div>
   </section>
 </template>
 
 <script>
+import { useCounterStore } from '@/stores/counter'
+
 export default {
   name: "Product",
+  setup() {
+    const store = useCounterStore()
+
+    return {
+      store,
+    }
+  },
   data() {
     return {
       productData: {},
-      cartData: [],
       cartTotalPrice: 0,
-      isActive: false,
     };
   },
   async fetch() {
@@ -144,41 +79,26 @@ export default {
       this.productData = data.products;
     } catch (ex) {}
   },
-  mounted() {
-    if (localStorage.getItem("cart") !== null) {
-      this.cartData = JSON.parse(localStorage.getItem("cart"));
-    }
-  },
   methods: {
     addToCart(product) {
-      this.isActive = true;
+      this.store.cartActive = true;
 
       let isNotSame = true;
-      this.cartData.forEach((element, index) => {
+      this.store.cartData.forEach((element, index) => {
         if (product.id == element.id) {
           product.count = element.count + 1;
-          this.$set(this.cartData, index, product);
+          this.$set(this.store.cartData, index, product);
           isNotSame = false;
         }
       });
 
       if (isNotSame) {
         product["count"] = 1;
-        this.cartData.push(product);
+        this.store.cartData.push(product);
       }
 
-      localStorage.setItem("cart", JSON.stringify(this.cartData));
-    },
-    deleteToCart(index) {
-      this.cartData.splice(index, 1);
-      localStorage.setItem("cart", JSON.stringify(this.cartData));
-      if (this.cartData.length < 1) {
-        localStorage.removeItem("cart");
-      }
-    },
-    cartClose() {
-      this.isActive = false;
-    },
+      localStorage.setItem("cart", JSON.stringify(this.store.cartData));
+    }
   },
   watch: {
     cartData: {

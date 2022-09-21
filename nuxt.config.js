@@ -19,7 +19,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "",
+        content: "Ecommerce Project",
       },
       {
         name: "format-detection",
@@ -53,14 +53,13 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
+    '@nuxtjs/composition-api/module',
+    '@pinia/nuxt',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-   // Modules: https://go.nuxtjs.dev/config-modules
-   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
-  ],
+  modules: ["@nuxtjs/axios"],
+  
 
   // https://tailwindcss.nuxtjs.org/getting-started/options
   tailwindcss: {
