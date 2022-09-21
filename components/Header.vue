@@ -156,20 +156,22 @@ export default {
   name: "Header",
   setup() {
     const store = useCounterStore();
-
     return {
       store,
     };
   },
   methods: {
-    cartOpen() {
-      this.store.cartActive = !this.store.cartActive;
-    },
     deleteToCart(index) {
       this.store.cartData.splice(index, 1);
       localStorage.setItem("cart", JSON.stringify(this.store.cartData));
       if (this.store.cartData.length < 1) {
         localStorage.removeItem("cart");
+        this.store.cartActive = false;
+      }
+    },
+    cartOpen() {
+      if (!this.store.cartData.length < 1) {
+        this.store.cartActive = !this.store.cartActive;
       }
     },
     cartClose() {
