@@ -53,13 +53,12 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
-    '@nuxtjs/composition-api/module',
-    '@pinia/nuxt',
+    "@nuxtjs/composition-api/module",
+    "@pinia/nuxt",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ["@nuxtjs/axios"],
-  
 
   // https://tailwindcss.nuxtjs.org/getting-started/options
   tailwindcss: {
@@ -72,5 +71,15 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config, ctx) {
+      if (ctx.isServer) {
+        config.externals = [
+          nodeExternals({
+            whitelist: [/^vue-slick/],
+          }),
+        ];
+      }
+    },
+  },
 };

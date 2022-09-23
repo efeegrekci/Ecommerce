@@ -10,47 +10,52 @@
         xl:grid-cols-4
       "
     >
-      <li
-        v-for="(item, index) in productData"
-        :key="index"
-        class="w-full flex items-center justify-center flex-col py-5 group"
-      >
-        <NuxtLink :to="`/products/${item.url}`" class="mb-3">
-          <div class="text-center font-normal mb-3 px-5 text-sm text-gray-700">
-            {{ item.name }}
-          </div>
-          <div class="flex justify-center mb-5 overflow-hidden w-56 h-56">
-            <img
-              :src="item.image"
-              alt="Product"
-              class="hover:scale-110 transition-all object-contain"
-            />
-          </div>
-          <div class="text-center font-bold text-xl text-gray-700">
-            {{ item.price }}$
-          </div>
-        </NuxtLink>
-        <div
-          href="javascript:;"
-          :id="item.id"
-          class="
-            flex
-            justify-center
-            font-semibold
-            bg-gray-300
-            text-gray-900
-            hover:bg-gray-600 hover:text-white
-            py-2
-            px-5
-            rounded-lg
-            transition-colors
-            cursor-pointer
-          "
-          @click="addToCart(item)"
+      <template v-for="(item, index) in productData">
+        <li
+          :key="index"
+          v-if="!item.enabled"
+          class="w-full flex items-center justify-center flex-col py-5 group"
         >
-          Add to Cart
-        </div>
-      </li>
+          <NuxtLink :to="`/products/${item.url}`" class="mb-3">
+            <div
+              v-if="!!item.name"
+              class="text-center font-normal mb-3 px-5 text-sm text-gray-700"
+            >
+              {{ item.name }}
+            </div>
+            <div class="flex justify-center mb-5 overflow-hidden w-56 h-56">
+              <img
+                :src="item.image"
+                :alt="item.alt"
+                class="hover:scale-110 transition-all object-contain"
+              />
+            </div>
+            <div class="text-center font-bold text-xl text-gray-700">
+              {{ item.price }}$
+            </div>
+          </NuxtLink>
+          <div
+            href="javascript:;"
+            :id="item.id"
+            class="
+              flex
+              justify-center
+              font-semibold
+              bg-gray-300
+              text-gray-900
+              hover:bg-gray-600 hover:text-white
+              py-2
+              px-5
+              rounded-lg
+              transition-colors
+              cursor-pointer
+            "
+            @click="addToCart(item)"
+          >
+            Add to Cart
+          </div>
+        </li>
+      </template>
     </ul>
   </section>
 </template>
@@ -69,7 +74,7 @@ export default {
   data() {
     return {
       productData: {},
-      newCartData : {},
+      newCartData: {},
       cartTotalPrice: 0,
     };
   },

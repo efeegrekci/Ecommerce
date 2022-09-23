@@ -12,9 +12,9 @@
       shadow-md
     "
   >
-    <a href="javascript:;" class="overflow-hidden">
+    <NuxtLink to="/" class="overflow-hidden">
       <img src="/img/logo.png" class="w-10" alt="logo" />
-    </a>
+    </NuxtLink>
     <ul class="flex gap-10">
       <li>
         <NuxtLink
