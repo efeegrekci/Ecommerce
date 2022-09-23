@@ -6,11 +6,11 @@
   </main>
 </template>
 <script>
-import { useCounterStore } from "@/stores/counter";
+import { useCartStore } from "@/stores/index";
 export default {
   name: "default",
   setup() {
-    const store = useCounterStore();
+    const store = useCartStore();
     return {
       store,
     };

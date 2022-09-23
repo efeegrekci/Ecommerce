@@ -1,13 +1,10 @@
 <template>
-  <section>
-    <Slider />
     <Product />
-  </section>
 </template>
 
 <script>
 export default {
-  name: "IndexPage",
+  name: "ProductsPage",
   layout: "default",
 };
 </script>

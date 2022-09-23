@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap");
 
+
 body {
   font-family: "Inter", sans-serif;
 }
@@ -9,6 +10,7 @@ a.nuxt-link-exact-active {
 a.nuxt-link-exact-active:hover {
   color: #00c58e;
 }
+.slick-slider {margin-top: -30px; margin-bottom: 50px;}
 
 .active{
   opacity: 1;

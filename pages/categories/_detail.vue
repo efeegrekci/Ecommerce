@@ -1,10 +1,10 @@
 <template>
-  <id/>
+    <Product />
 </template>
 
 <script>
 export default {
-  name: "DetailPage",
+  name: "Test",
   layout: "default",
 };
 </script>

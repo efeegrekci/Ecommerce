@@ -13,7 +13,7 @@
     "
   >
     <a href="javascript:;" class="overflow-hidden">
-      <img src="img/logo.png" class="w-10" alt="logo" />
+      <img src="/img/logo.png" class="w-10" alt="logo" />
     </a>
     <ul class="flex gap-10">
       <li>
@@ -42,14 +42,14 @@
       </li>
       <li>
         <NuxtLink
-          to="/detail"
+          to="/products"
           class="
             text-gray-900
             font-semibold
             hover:text-gray-400
             transition-colors
           "
-          >About</NuxtLink
+          >Products</NuxtLink
         >
       </li>
     </ul>
@@ -72,7 +72,7 @@
       >
         {{ store.cartData.length }}
       </div>
-      <img src="img/cart.svg" class="w-10" alt="cart" />
+      <img src="/img/cart.svg" class="w-10" alt="cart" />
     </a>
     <div
       class="
@@ -88,12 +88,13 @@
         pr-12
         pt-12
         rounded-bl-lg
+        z-50
       "
       :class="{ active: store.cartActive }"
     >
       <div class="absolute right-5 top-5">
         <img
-          src="img/xmark-solid.svg"
+          src="/img/xmark-solid.svg"
           alt="xmark"
           class="w-3 cursor-pointer"
           @click="cartClose"
@@ -135,7 +136,7 @@
             "
           >
             <img
-              src="img/trash-solid.svg"
+              src="/img/trash-solid.svg"
               alt=""
               class="w-3"
               @click="deleteToCart(index)"
@@ -151,11 +152,11 @@
 </template>
 
 <script>
-import { useCounterStore } from "@/stores/counter";
+import { useCartStore } from "@/stores/index";
 export default {
   name: "Header",
   setup() {
-    const store = useCounterStore();
+    const store = useCartStore();
     return {
       store,
     };

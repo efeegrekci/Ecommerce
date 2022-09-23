@@ -15,7 +15,7 @@
         :key="index"
         class="w-full flex items-center justify-center flex-col py-5 group"
       >
-        <NuxtLink :to="`/detail/${item.url}`" class="mb-3">
+        <NuxtLink :to="`/products/${item.url}`" class="mb-3">
           <div class="text-center font-normal mb-3 px-5 text-sm text-gray-700">
             {{ item.name }}
           </div>
@@ -56,13 +56,12 @@
 </template>
 
 <script>
-import { useCounterStore } from "@/stores/counter";
+import { useCartStore } from "@/stores/index";
 
 export default {
   name: "Product",
   setup() {
-    const store = useCounterStore();
-
+    const store = useCartStore();
     return {
       store,
     };
@@ -70,6 +69,7 @@ export default {
   data() {
     return {
       productData: {},
+      newCartData : {},
       cartTotalPrice: 0,
     };
   },
@@ -100,30 +100,21 @@ export default {
       localStorage.setItem("cart", JSON.stringify(this.store.cartData));
     },
   },
-  watch: {
-    // store: {
-    //   handler: function (val) {
-    //     this.store.cartTotalPrice = 0;
-    //     val.forEach((element) => {
-    //       this.store.cartTotalPrice =
-    //         this.store.cartTotalPrice +
-    //         parseInt(element.price) * parseInt(element.count);
-    //     });
-    //   },
-    //   deep: true,
-    // },
-    // store: {
-    //   immediate: true,
-    //   deep: true,
-    //   handler(val) {
-    //     this.store.cartTotalPrice = 0;
-    //     val.forEach((element) => {
-    //       this.store.cartTotalPrice =
-    //         this.store.cartTotalPrice +
-    //         parseInt(element.price) * parseInt(element.count);
-    //     });
-    //   },
-    // },
-  },
+  // mounted(){
+  //   this.newCartData = this.store.cartData
+  // },
+  // watch: {
+  //   newCartData: {
+  //     handler: function (val) {
+  //       this.store.cartTotalPrice = 0;
+  //       val.forEach((element) => {
+  //         this.store.cartTotalPrice =
+  //           this.store.cartTotalPrice +
+  //           parseInt(element.price) * parseInt(element.count);
+  //       });
+  //     },
+  //     deep: true,
+  //   },
+  // },
 };
 </script>
