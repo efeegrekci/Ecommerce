@@ -76,30 +76,30 @@ export default {
   },
   async fetch() {
     const { data } = await this.$axios.get("/63231094390f92a401803bfa");
-    this.categoryData = data.products.find(
+    this.categoryData = data.products.filter(
       (item) => item.category === $nuxt.$route.params.detail
     );
   },
-  // methods: {
-  //   addToCart(product) {
-  //     let isNotSame = true;
-  //     this.store.cartData.forEach((element, index) => {
-  //       if (product.id == element.id) {
-  //         product.count = element.count + 1;
-  //         this.$set(this.store.cartData, index, product);
-  //         isNotSame = false;
-  //       }
-  //     });
+  methods: {
+    addToCart(product) {
+      let isNotSame = true;
+      this.store.cartData.forEach((element, index) => {
+        if (product.id == element.id) {
+          product.count = element.count + 1;
+          this.$set(this.store.cartData, index, product);
+          isNotSame = false;
+        }
+      });
 
-  //     if (isNotSame) {
-  //       product["count"] = 1;
-  //       this.store.cartData.push(product);
-  //     }
+      if (isNotSame) {
+        product["count"] = 1;
+        this.store.cartData.push(product);
+      }
 
-  //     localStorage.setItem("cart", JSON.stringify(this.store.cartData));
+      localStorage.setItem("cart", JSON.stringify(this.store.cartData));
 
-  //     this.store.successToast("Added to Cart");
-  //   },
-  // },
+      this.store.successToast("Added to Cart");
+    },
+  },
 };
 </script>

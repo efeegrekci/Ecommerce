@@ -5,18 +5,18 @@
         <img :src="page.image" :alt="page.image" />
       </div>
       <div class="w-1/2 pl-10">
-        <div class="mb-3">
+        <div class="mb-3 capitalize">
           <span class="font-semibold">Category :</span>
           {{ page.category }}
         </div>
-        <div class="mb-3">
+        <div class="mb-3 capitalize">
           <span class="font-semibold">Product Name :</span>
           {{ page.name }}
         </div>
-        <div class="mb-3">
+        <div class="mb-3 capitalize">
           <span class="font-semibold">Price :</span> {{ page.price }}$
         </div>
-        <div class="mb-3">
+        <div class="mb-3 capitalize">
           <span class="font-semibold">Description :</span>
           {{ page.description }}
         </div>
@@ -48,7 +48,7 @@
 import { useCartStore } from "@/stores/index";
 
 export default {
-  name: "detail",
+  name: "ProductDetail",
   setup() {
     const store = useCartStore();
     return {
