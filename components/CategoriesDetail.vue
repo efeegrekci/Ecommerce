@@ -11,7 +11,7 @@
       "
     >
       <li
-        v-for="(item, index) in productData"
+        v-for="(item, index) in categoryData"
         :key="index"
         class="w-full flex items-center justify-center flex-col py-5 group"
       >
@@ -62,8 +62,7 @@
 import { useCartStore } from "@/stores/index";
 
 export default {
-  name: "Product",
-  props: ["categoryData"],
+  name: "CategoriesDetail",
   setup() {
     const store = useCartStore();
     return {
@@ -72,35 +71,35 @@ export default {
   },
   data() {
     return {
-      productData: {},
+      categoryData: {},
     };
   },
   async fetch() {
-    try {
-      const { data } = await this.$axios.get(`/63231094390f92a401803bfa`);
-      this.productData = data.products;
-    } catch (ex) {}
+    const { data } = await this.$axios.get("/63231094390f92a401803bfa");
+    this.categoryData = data.products.find(
+      (item) => item.category === $nuxt.$route.params.detail
+    );
   },
-  methods: {
-    addToCart(product) {
-      let isNotSame = true;
-      this.store.cartData.forEach((element, index) => {
-        if (product.id == element.id) {
-          product.count = element.count + 1;
-          this.$set(this.store.cartData, index, product);
-          isNotSame = false;
-        }
-      });
+  // methods: {
+  //   addToCart(product) {
+  //     let isNotSame = true;
+  //     this.store.cartData.forEach((element, index) => {
+  //       if (product.id == element.id) {
+  //         product.count = element.count + 1;
+  //         this.$set(this.store.cartData, index, product);
+  //         isNotSame = false;
+  //       }
+  //     });
 
-      if (isNotSame) {
-        product["count"] = 1;
-        this.store.cartData.push(product);
-      }
+  //     if (isNotSame) {
+  //       product["count"] = 1;
+  //       this.store.cartData.push(product);
+  //     }
 
-      localStorage.setItem("cart", JSON.stringify(this.store.cartData));
+  //     localStorage.setItem("cart", JSON.stringify(this.store.cartData));
 
-      this.store.successToast("Added to Cart");
-    },
-  },
+  //     this.store.successToast("Added to Cart");
+  //   },
+  // },
 };
 </script>

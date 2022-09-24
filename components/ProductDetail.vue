@@ -65,8 +65,6 @@ export default {
     this.page = data.products.find(
       (item) => item.url === $nuxt.$route.params.detail
     );
-    // console.log($nuxt.$route);
-    // console.log($nuxt.$route.params.detail);
   },
   methods: {
     addToCart() {
@@ -87,6 +85,8 @@ export default {
       }
 
       localStorage.setItem("cart", JSON.stringify(this.store.cartData));
+
+      this.store.successToast("Added to Cart");
     },
   },
 };

@@ -3,7 +3,6 @@
     <Header />
     <Nuxt keep-alive />
     <Footer />
-    <Warning />
   </main>
 </template>
 <style>

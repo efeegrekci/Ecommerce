@@ -58,8 +58,15 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios", "vue-toastification/nuxt"],
 
+  toast: {
+    // Use your own CSS file
+    cssFile: "",
+    // Or disable CSS injection
+    cssFile: false,
+  },
+  
   // https://tailwindcss.nuxtjs.org/getting-started/options
   tailwindcss: {
     // cssPath: '~/assets/scss/main.scss',
@@ -71,15 +78,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    extend(config, ctx) {
-      if (ctx.isServer) {
-        config.externals = [
-          nodeExternals({
-            whitelist: [/^vue-slick/],
-          }),
-        ];
-      }
-    },
-  },
+  build: {},
 };

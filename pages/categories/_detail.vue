@@ -1,10 +1,11 @@
 <template>
-    <Product />
+  <CategoriesDetail />
 </template>
 
 <script>
+
 export default {
-  name: "Test",
-  layout: "default",
+  name: "CDetailPage",
+  layout: "default"
 };
 </script>
