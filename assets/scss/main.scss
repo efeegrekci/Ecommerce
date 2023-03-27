@@ -1,6 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap");
-@import "vue-toastification/dist/index.css";
-
 
 body {
   font-family: "Inter", sans-serif;
@@ -21,7 +19,23 @@ a.nuxt-link-exact-active:hover {
   &::before{color: #000!important;font-size: 40px!important;}
 }
 
+.slick-dots {
+  li{
+    button{
+      &::before{font-size: 10px!important;}
+    }
+  }
+}
+
 .active{
   opacity: 1;
   visibility: visible;
 }
+.hidden{
+  display: none;
+}
+
+@media only screen and (max-width: 992px) {
+  .slick-arrow{display: none!important;}
+}
+

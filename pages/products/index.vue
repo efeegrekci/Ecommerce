@@ -1,5 +1,5 @@
 <template>
-    <Product />
+    <Product pageSize="8"/>
 </template>
 
 <script>

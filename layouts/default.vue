@@ -2,14 +2,10 @@
   <main>
     <Header />
     <Nuxt keep-alive />
+    <Toast />
     <Footer />
   </main>
 </template>
-<style>
-body {
-  @apply overflow-hidden overflow-y-scroll;
-}
-</style>
 <script>
 import { useCartStore } from "@/stores/index";
 export default {
@@ -26,13 +22,13 @@ export default {
     }
   },
   watch: {
-    'store.cartData': {
+    "store.cartData": {
       handler: function (val) {
         this.store.cartTotalPrice = 0;
         val.forEach((element) => {
           this.store.cartTotalPrice =
             this.store.cartTotalPrice +
-            parseInt(element.price) * parseInt(element.count);
+            parseInt(element.attributes.price) * parseInt(element.count);
         });
       },
       deep: true,

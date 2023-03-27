@@ -37,7 +37,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseUrl: process.env.BASE_URL || "https://mockapit.herokuapp.com/apis",
+    baseUrl: process.env.BASE_URL || "http://localhost:1337/",
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -58,7 +58,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios", "vue-toastification/nuxt"],
+  modules: ["@nuxtjs/axios"],
 
   toast: {
     // Use your own CSS file

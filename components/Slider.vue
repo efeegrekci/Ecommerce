@@ -1,21 +1,11 @@
 <template>
-  <VueSlickCarousel
-    class="cursor-pointer"
-    v-bind="settings"
-    v-if="sliderData.length > 0"
-  >
-    <div
-      class="w-full overflow-hidden relative"
-      v-for="(item, index) in sliderData"
-      :key="index"
-      @click="$nuxt.$router.push({ path: item.url })"
-    >
+  <VueSlickCarousel class="cursor-pointer" v-bind="settings" v-if="sliderData.length > 0">
+    <div class="w-full overflow-hidden relative" v-for="(item, index) in sliderData" :key="index"
+      @click="$nuxt.$router.push({ path: item.attributes.url })">
       <div class="pointer-events-none">
-        <img
-          :src="item.image"
-          class="object-cover object-center h-96 w-full"
-          :alt="item.alt"
-        />
+        <img :src="'http://localhost:1337' + item.attributes.image.data.attributes.url"
+          class="object-cover object-center object-left h-56 lg:h-96 w-full"
+          :alt="item.attributes.image.data.attributes.name" />
       </div>
     </div>
   </VueSlickCarousel>
@@ -42,16 +32,16 @@ export default {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         infinite: true,
       },
     };
   },
   async fetch() {
     try {
-      const { data } = await this.$axios.get(`/632d132608c65dc9e06a72bf`);
-      this.sliderData = data.slider;
-    } catch (ex) {}
+      const { data } = await this.$axios.get(`api/banners?populate=*`);
+      this.sliderData = data.data;
+    } catch (ex) { }
   },
 };
 </script>
