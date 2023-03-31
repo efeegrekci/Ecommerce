@@ -5,8 +5,8 @@ export const useCartStore = defineStore("cart", {
     cartData: [],
     cartTotalPrice: 0,
     cartActive: false,
-    addedToCart: false,
-    productName: ""
+    productName: [],
+    isActiveMenu: window.innerWidth > 767 ? true : false,
     
   }),
   getters: {},

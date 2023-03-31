@@ -2,7 +2,7 @@
   <main>
     <Header />
     <Nuxt keep-alive />
-    <Toast />
+    <Toasted />
     <Footer />
   </main>
 </template>

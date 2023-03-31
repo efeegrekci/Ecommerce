@@ -25,7 +25,6 @@
         </div>
         <div class="mb-3 capitalize">
           <span class="font-semibold">Description :</span>
-          <!-- {{ page.attributes.description}} -->
           <span v-html="page.attributes.description"></span>
         </div>
         <a
@@ -70,8 +69,6 @@ export default {
   },
   methods: {
     addToCart() {
-      this.store.cartActive = true;
-
       let isNotSame = true;
       this.store.cartData.forEach((element, index) => {
         if (this.page.id == element.id) {
@@ -88,11 +85,10 @@ export default {
 
       localStorage.setItem("cart", JSON.stringify(this.store.cartData));
 
-      this.store.productName = this.page.attributes.name
-      this.store.addedToCart = true;
+      this.store.productName.push(this.page.attributes.name);
       setTimeout(() => {
-        this.store.addedToCart = false;
-      }, 3000);
+        this.store.productName.shift()
+      }, 5000);
     },
   },
 };

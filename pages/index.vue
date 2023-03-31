@@ -1,7 +1,7 @@
 <template>
   <section>
     <Slider />
-    <Product pageSize="4"/>
+    <Product pageSize="4" :loadMoreButton="false" />
     <AlertBox />
   </section>
 </template>
