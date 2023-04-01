@@ -10,7 +10,7 @@
       <img src="/img/logo.png" class="w-8 xl:w-10" alt="logo" />
     </NuxtLink>
     <ul v-if="store.isActiveMenu "
-      class="gap-4 xl:gap-10 flex flex-col md:flex-row absolute md:relative top-20 md:top-0 left-0 bg-white w-full md:w-auto shadow-md md:shadow-inherit p-5 z-10 md:flex">
+      class="gap-4 xl:gap-10 flex flex-col md:flex-row absolute md:relative top-20 md:top-0 left-0 bg-white w-full md:w-auto shadow-md md:shadow-inherit p-5 z-10 md:flex animate-in slide-in-from-left">
       <li class="text-center">
         <NuxtLink to="/" class="text-gray-900 font-semibold text-sm xl:text-base hover:text-gray-400 transition-colors">
           Home</NuxtLink>
@@ -34,7 +34,7 @@
       <img src="/img/cart.svg" class="w-8 xl:w-10" alt="cart" />
     </a>
     <div
-      class="opacity-0 invisible absolute bg-white right-0 top-20 w-full sm:w-96 shadow-md p-5 pt-12 rounded-bl-lg z-10"
+      class="opacity-0 invisible absolute bg-white right-0 top-20 w-full sm:w-96 shadow-md p-5 pt-12 rounded-bl-lg z-10 duration-500"
       :class="{ active: store.cartActive }">
       <div class="absolute right-5 top-2">
         <img src="/img/xmark-solid.svg" alt="xmark" class="w-3 cursor-pointer" @click="cartClose" />
