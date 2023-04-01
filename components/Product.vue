@@ -70,7 +70,7 @@ export default {
       this.store.productName.push(product.attributes.name);
       setTimeout(() => {
         this.store.productName.shift()
-      }, 500000);
+      }, 5000);
 
     },
     async loadMore() {
