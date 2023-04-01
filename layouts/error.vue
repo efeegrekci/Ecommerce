@@ -109,7 +109,7 @@
 
 <script>
 export default {
-  name: "error",
+  name: "error" ,
   props: {
     error: {
       type: Object,

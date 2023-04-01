@@ -18,12 +18,12 @@ import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 
 export default {
   name: "Slider",
+  props: ["sliderData"],
   components: {
     VueSlickCarousel,
   },
   data() {
     return {
-      sliderData: [],
       settings: {
         dots: true,
         dotsClass: "slick-dots custom-dot-class",
@@ -36,12 +36,6 @@ export default {
         infinite: true,
       },
     };
-  },
-  async fetch() {
-    try {
-      const { data } = await this.$axios.get(`api/banners?populate=*`);
-      this.sliderData = data.data;
-    } catch (ex) { }
   },
 };
 </script>

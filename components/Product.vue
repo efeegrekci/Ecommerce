@@ -1,7 +1,7 @@
 <template>
-  <section v-if="isLoad" class="px-3 w-full my-14 sm:px-5 lg:max-w-screen-lg lg:m-auto">
+  <div class="productBox">
     <ul class="grid gap-3 grid-cols-1 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      <li v-for="(item, index) in productData" :key="index"
+      <li v-for="(item, index) in productDataClone" :key="index"
         class="w-full flex items-center justify-center flex-col py-5 group">
         <NuxtLink :to="`/products/${item.id}`" class="mb-3">
           <div v-if="!!item.attributes && !!item.attributes.name"
@@ -23,13 +23,12 @@
         </div>
       </li>
     </ul>
-
     <div v-show="loadMoreButton" v-if="pageCount > page" class="w-full flex justify-center mt-10" @click="loadMore()">
       <span
         class="cursor-pointer text-base text-center transition-colors bg-gray-900 text-white hover:bg-gray-300 hover:text-gray-900 font-semibold rounded-lg py-2 px-5">Daha
         Fazla Yükle</span>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -37,7 +36,7 @@ import { useCartStore } from "@/stores/index";
 
 export default {
   name: "Product",
-  props: ["pageSize", "loadMoreButton"],
+  props: ["productData", "pageCount", "pageSize", "loadMoreButton"],
   setup() {
     const store = useCartStore();
     return {
@@ -46,21 +45,9 @@ export default {
   },
   data() {
     return {
-      productData: [],
-      isLoad: false,
-      page: 1,
-      pageCount: null
+      productDataClone: this.productData,
+      page: 1
     };
-  },
-  async fetch() {
-    try {
-      const { data } = await this.$axios.get(`api/products?&pagination[page]=1&pagination[pageSize]=${this.pageSize}&populate=*`);
-      this.productData = data.data;
-      this.pageCount = data.meta.pagination.pageCount
-      this.isLoad = true;
-    } catch (ex) {
-      alert("Api Error")
-    }
   },
   methods: {
     addToCart(product) {
@@ -91,8 +78,7 @@ export default {
         this.page++
         if (this.pageCount >= this.page) {
           const { data } = await this.$axios.get(`api/products?&pagination[page]=${this.page}&pagination[pageSize]=${this.pageSize}&populate=*`);
-          this.productData = this.productData.concat(data.data);
-          this.isLoad = true;
+          this.productDataClone = this.productDataClone.concat(data.data);
         }
 
       } catch (ex) {

@@ -30,7 +30,7 @@ export default {
       {
         rel: "icon",
         type: "image/x-icon",
-        href: "/favicon.ico",
+        href: "img/favicon.ico",
       },
     ],
   },
@@ -59,13 +59,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ["@nuxtjs/axios"],
-
-  toast: {
-    // Use your own CSS file
-    cssFile: "",
-    // Or disable CSS injection
-    cssFile: false,
-  },
   
   // https://tailwindcss.nuxtjs.org/getting-started/options
   tailwindcss: {

@@ -87,19 +87,6 @@ export default {
       store,
     };
   },
-  data() {
-    return {
-      open: false
-    }
-  },
-  mounted() {
-    console.log(this.store.isActiveMenu)
-  },
-  watch:{
-    'this.store.isActiveMenu'(newVal,oldVal){
-console.log(newVal)
-    }
-  },
   methods: {
     hamburgerClick() {
       this.store.cartActive = false;
@@ -116,11 +103,6 @@ console.log(newVal)
     cartOpen() {
       if (!this.store.cartData.length < 1) {
         this.store.cartActive = !this.store.cartActive;
-        // if (this.store.isActiveMenu) {
-        //   const elem = this.$refs.hamBtn
-        //   elem.click()
-        //   this.store.cartActive = !this.store.cartActive;
-        // }
       }
     },
     cartClose() {
