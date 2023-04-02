@@ -1,4 +1,4 @@
-# [CMS](https://github.com/efeegrekci/Ecommerce-Strapi).
+## [CMS](https://github.com/efeegrekci/Ecommerce-Strapi).
 
 ## Build Setup
 
