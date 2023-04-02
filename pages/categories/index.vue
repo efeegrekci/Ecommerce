@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full lg:my-14 max-w-screen-lg m-auto py-5">
+  <section class="w-full max-w-screen-lg m-auto">
     <Categories v-if="isLoadData" :categoryData="data" />
   </section>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <div class="text-3xl text-center w-full font-semibold pt-10 text-stone-700 uppercase">{{ productData.attributes.name }}</div>
+    <h1 class="text-3xl text-center w-full font-semibold pt-10 text-stone-700 uppercase">{{ productData.attributes.name }}</h1>
     <div class="flex items-center w-full flex-col md:flex-row">
       <div class="md:w-1/2 px-5 overflow-hidden">
         <img :src="`http://localhost:1337${productData.attributes.image.data.attributes.url}`"

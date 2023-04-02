@@ -4,7 +4,7 @@
       @click="$nuxt.$router.push({ path: item.attributes.url })">
       <div class="pointer-events-none">
         <img :src="'http://localhost:1337' + item.attributes.image.data.attributes.url"
-          class="object-cover object-center object-left h-56 lg:h-96 w-full"
+          class="object-cover object-left h-72 lg:h-96 w-full"
           :alt="item.attributes.image.data.attributes.name" />
       </div>
     </div>

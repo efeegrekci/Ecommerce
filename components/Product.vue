@@ -1,11 +1,11 @@
 <template>
   <div class="productBox">
+    <h1 class="text-3xl text-center w-full font-semibold pt-5 pb-10 text-stone-700 uppercase">Products</h1>
     <ul class="grid gap-3 grid-cols-1 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <li v-for="(item, index) in productDataClone" :key="index"
         class="w-full flex items-center justify-center flex-col py-5 group">
         <NuxtLink :to="`/products/${item.attributes.url}`" class="mb-3">
-          <div
-            class="text-center font-normal mb-3 px-5 text-sm text-gray-700">
+          <div class="text-center font-normal mb-3 px-5 text-sm text-gray-700">
             {{ item.attributes.name }}
           </div>
           <div class="flex justify-center mb-5 overflow-hidden w-56 h-56">
