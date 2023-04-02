@@ -16,6 +16,11 @@ export default {
       store,
     };
   },
+  data() {
+    return {
+      isLoadData: false
+    }
+  },
   mounted() {
     if (localStorage.getItem("cart") !== null) {
       this.store.cartData = JSON.parse(localStorage.getItem("cart"));

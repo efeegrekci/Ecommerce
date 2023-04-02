@@ -1,29 +1,32 @@
 <template>
-  <div class="flex items-center w-full flex-col md:flex-row">
-    <div class="md:w-1/2 px-5 overflow-hidden">
-      <img :src="`http://localhost:1337${productData.attributes.image.data.attributes.url}`"
-        :alt="productData.attributes.image.data.attributes.name" />
-    </div>
-    <div class="md:w-1/2 px-5 md:pl-10">
-      <div class="mb-3 capitalize">
-        <span class="font-semibold">Category :</span>
-        {{ productData.attributes.category.data.attributes.name }}
+  <div class="w-full">
+    <div class="text-3xl text-center w-full font-semibold pt-10 text-stone-700 uppercase">{{ productData.attributes.name }}</div>
+    <div class="flex items-center w-full flex-col md:flex-row">
+      <div class="md:w-1/2 px-5 overflow-hidden">
+        <img :src="`http://localhost:1337${productData.attributes.image.data.attributes.url}`"
+          :alt="productData.attributes.image.data.attributes.name" />
       </div>
-      <div class="mb-3 capitalize">
-        <span class="font-semibold">Product Name :</span>
-        {{ productData.attributes.name }}
+      <div class="md:w-1/2 px-5 md:pl-10">
+        <div class="mb-3 capitalize">
+          <span class="font-semibold">Category :</span>
+          {{ productData.attributes.category.data.attributes.name }}
+        </div>
+        <div class="mb-3 capitalize">
+          <span class="font-semibold">Product Name :</span>
+          {{ productData.attributes.name }}
+        </div>
+        <div class="mb-3 capitalize">
+          <span class="font-semibold">Price :</span>
+          {{ productData.attributes.price }}$
+        </div>
+        <div class="mb-3 capitalize">
+          <span class="font-semibold">Description :</span>
+          <span v-html="productData.attributes.description"></span>
+        </div>
+        <a href="javascript:;" :id="productData.id" @click="addToCart()"
+          class="flex justify-center font-semibold bg-gray-300 text-gray-900 hover:bg-gray-600 hover:text-white py-2 px-5 mt-10 rounded-lg transition-colors">Add
+          to Cart</a>
       </div>
-      <div class="mb-3 capitalize">
-        <span class="font-semibold">Price :</span>
-        {{ productData.attributes.price }}$
-      </div>
-      <div class="mb-3 capitalize">
-        <span class="font-semibold">Description :</span>
-        <span v-html="productData.attributes.description"></span>
-      </div>
-      <a href="javascript:;" :id="productData.id" @click="addToCart()"
-        class="flex justify-center font-semibold bg-gray-300 text-gray-900 hover:bg-gray-600 hover:text-white py-2 px-5 mt-10 rounded-lg transition-colors">Add
-        to Cart</a>
     </div>
   </div>
 </template>

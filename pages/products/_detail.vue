@@ -1,7 +1,6 @@
 <template>
-  <section v-if="isLoadData" 
-    class="md:py-12 w-full md:my-14 lg:max-w-screen-lg lg:m-auto">
-    <ProductDetail :productData="data" />
+  <section class=" w-full md:my-14 lg:max-w-screen-lg lg:m-auto">
+    <ProductDetail v-if="isLoadData" :productData="data" />
   </section>
 </template>
 
@@ -11,18 +10,18 @@ export default {
   layout: "default",
   data() {
     return {
-      data: {},
-      routePathId: null,
+      data: [],
+      routePathName: null,
       isLoadData: false,
     };
   },
   async fetch() {
     try {
-      this.routePathId = $nuxt.$route.params.detail;
+      this.routePathName = $nuxt.$route.params.detail;
       const { data } = await this.$axios.get(
-        `api/products/${this.routePathId}?populate=*`
+        `/api/products/?filters[url][$eq]=${this.routePathName}&populate=*`
       );
-      this.data = data.data;
+      this.data = data.data[0];
       this.isLoadData = true;
     } catch (ex) {
       alert("Api Error")

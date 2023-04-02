@@ -3,8 +3,8 @@
     <ul class="grid gap-3 grid-cols-1 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <li v-for="(item, index) in productDataClone" :key="index"
         class="w-full flex items-center justify-center flex-col py-5 group">
-        <NuxtLink :to="`/products/${item.id}`" class="mb-3">
-          <div v-if="!!item.attributes && !!item.attributes.name"
+        <NuxtLink :to="`/products/${item.attributes.url}`" class="mb-3">
+          <div
             class="text-center font-normal mb-3 px-5 text-sm text-gray-700">
             {{ item.attributes.name }}
           </div>

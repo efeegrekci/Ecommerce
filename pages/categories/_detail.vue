@@ -1,6 +1,7 @@
 <template>
-  <section v-if="isLoadData" class="px-3 w-full my-14 sm:px-5 lg:max-w-screen-lg lg:m-auto">
-    <Product :productData="data" :pageCount="pageCountTotal" :pageSize="pageSize" :loadMoreButton="loadBtnVal" />
+  <section class="px-3 w-full my-14 sm:px-5 lg:max-w-screen-lg lg:m-auto">
+    <Product v-if="isLoadData" :productData="data" :pageCount="pageCountTotal" :pageSize="pageSize"
+      :loadMoreButton="loadBtnVal" />
   </section>
 </template>
 

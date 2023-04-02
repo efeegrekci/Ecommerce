@@ -5,7 +5,7 @@
       <NuxtLink class="flex flex-col-reverse sm:flex-col" :to="`/categories/${item.attributes.name.toLowerCase()}`">
         <div class="flex justify-center mt-3 sm:mt-0 sm:mb-3 overflow-hidden rounded-lg">
           <img :src="`http://localhost:1337${item.attributes.image.data.attributes.url}`" :alt="item.attributes.name"
-            class="hover:scale-150 transition-all duration-[2000ms] ease-out" />
+            class="hover:scale-150 transition-all duration-1000 ease-out" />
         </div>
         <div class="text-center font-bold text-xl text-gray-500">
           {{ item.attributes.name }}

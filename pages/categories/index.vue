@@ -1,6 +1,6 @@
 <template>
-  <section v-if="isLoadData" class="w-full lg:my-14 max-w-screen-lg m-auto py-5">
-    <Categories :categoryData="data" />
+  <section class="w-full lg:my-14 max-w-screen-lg m-auto py-5">
+    <Categories v-if="isLoadData" :categoryData="data" />
   </section>
 </template>
 
